@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=CreateGallery
+comment1.params=filename
+comment1.target=java.io.File\ outputDir(java.lang.String)
+comment2.params=filename
+comment2.target=java.lang.String\ extension(java.lang.String)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment4.params=picture\ output\ filter\ params
+comment4.target=void\ applyFilter(java.io.File,\ java.io.File,\ java.lang.reflect.Method,\ int[])
+numComments=5
