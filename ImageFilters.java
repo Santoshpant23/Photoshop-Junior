@@ -49,14 +49,11 @@ public class ImageFilters
 
     /**
      * flipVertical: Flip the image vertically along its X-axis
-     * Only use flipHorizontal and rotateRight for this one. Do not alter pixels directly in this function.
      * @param picture
      */
     public static Picture flipVertical(Picture picture)
     {
         System.err.println("Flip the image vertically along its X-axis");
-        //As I am instructed above, I have to use flipHorizontal and rotateRight to solve this problem.
-        //So, the process is simple.
         picture = flipHorizontal(picture);
         picture = rotateRight(picture);
         picture = rotateRight(picture);
@@ -72,9 +69,6 @@ public class ImageFilters
         System.err.println("Convert the image to black-and-white");
         int w = picture.getWidth();
         int h = picture.getHeight();
-        //So, I have this habit of always starting loops with i and j. So, if it is making my code look more complicated, 
-        //you can always give me feedback. I will try working on improving my habit.
-        //As far as how this code is working, I have followed the instructions on slides  i.e. taking the average and updating photo.
         for(int i=0; i<h; i++){
             for(int j=0; j<w; j++){
                 Pixel pix = picture.getPixel(i,j);
@@ -105,7 +99,6 @@ public class ImageFilters
         int h = picture.getHeight();
         for(int i=0; i<h; i++){
             for(int j=0; j<w; j++){
-                //Here, I am just subtracting each colour from 255 to mirror this color which will create zombie vision.
                 Pixel pix = picture.getPixel(i,j);
                 pix.setRed(255 - pix.getRed());
                 pix.setGreen(255 - pix.getGreen());
@@ -124,7 +117,6 @@ public class ImageFilters
     public static Picture scaleUp(Picture picture)
     {
         System.err.println("scaleUp: scale up the image by a factor of 2 by expanding each pixel into 4 pixels");
-        //First, I will create new picture of height and width twice of original picture.
         Picture pic2 =  new Picture(2* picture.getWidth() , 2* picture.getHeight());
         int h = picture.getHeight();
         int w = picture.getWidth();
@@ -135,7 +127,6 @@ public class ImageFilters
                 pxl2.setRed(pxl.getRed());
                 pxl2.setGreen(pxl.getGreen());
                 pxl2.setBlue(pxl.getBlue());
-                //This is the formula/logic I am using to scale up the image.
                 pic2.setPixel(2*i, 2*j, pxl2);
                 pic2.setPixel(2*i, 2*j+1, pxl2);
                 pic2.setPixel(2*i+1, 2*j, pxl2);
@@ -154,7 +145,6 @@ public class ImageFilters
     public static Picture scaleDown(Picture picture)
     {
         System.err.println("scaleDown: scale down the image by a factor of two by merging every 4 pixels into 1 pixel");
-        //First, I will create new picture of height and width half of original picture.
         Picture pic2 =  new Picture(picture.getWidth()/2 , picture.getHeight()/2);
         int h = picture.getHeight();
         int w = picture.getWidth();
@@ -186,8 +176,6 @@ public class ImageFilters
     public static Picture mirrorVertical(Picture picture)
     {
         System.err.println("Mirror the image vertically");
-        //We have already done mirroring in grids. So, the logic here and there is same. 
-        //Since this is vertical mirroring, my width will go from start to end while height will go till half only.
         int h = picture.getHeight();
         int w = picture.getWidth();
         for(int i=0; i<h/2; i++){
@@ -203,13 +191,11 @@ public class ImageFilters
 
     /**
      * Mirror the image horizontally.  Thus if it's a picture of a person's hands, they should have two left hands.
-     * Use only mirrorVertical(), rotateLeft(), and rotateRight() for this one. Do not alter pixels directly in this function.
      * @param picture
      */
     public static Picture mirrorHorizontal(Picture picture)
     {
         System.err.println("Mirror the image horizontally");
-        //No need to explain as it has already been explained above.
         picture = rotateRight(picture);
         picture = mirrorVertical(picture);
         picture = rotateLeft(picture);
@@ -240,7 +226,6 @@ public class ImageFilters
 
     /**
      * rotateLeft: Rotate the image 90 degrees to the left
-     * Use only rotateRight() for this one. Do not alter pixels directly in this function.
      * @param picture
      */
     public static Picture rotateLeft(Picture picture)
@@ -256,8 +241,6 @@ public class ImageFilters
     /**
      * Shift the image to the right by distance pixels.
      *
-     * HINT: A really simple way to do this is to create a new image to copy pixels into,
-     * use the mod operation to "wrap around", and then copy the new image over the old image at the end
      *
      * @param picture
      */
@@ -270,7 +253,6 @@ public class ImageFilters
         for(int i=0; i<h; i++){
             for(int j=0; j<w; j++){
                 Pixel p  = picture.getPixel(i,j);
-                //From the slides, I got this idea and then I just implemented it.
                 int newj = (j + distance)%w;
                 p2.setPixel(i, newj, p);
 
@@ -281,12 +263,6 @@ public class ImageFilters
 
     /**
      * Shift the image to the left by distance pixels.
-     *
-     * Use only shiftRight() for this one. Think about how far you would need to
-     * shift something to the right to make it look like it was actually
-     * shifted to the left...
-     *
-     * Do not alter pixels directly in this function.
      *
      * @param picture
      */
@@ -309,8 +285,6 @@ public class ImageFilters
         int threashold = 100;  
         int h = picture.getHeight();
         int w = picture.getWidth();
-        //First, I was trying to detect edges without making new picture which made my code very complicated. Then, prof Vera suggested me
-        //to make a new picture and then try with it. Hence, below is the solution which I did after failing to detect edges perfectly at first try :(
         Picture newpic = new Picture(w,h);
         for(int i=0; i<h-1; i++){
             for (int j=0; j<w-1; j++){
@@ -372,7 +346,6 @@ public class ImageFilters
 
     /**
      * Pixelate image by scaling down 4 times, then scaling back up 4 times.
-     * Do not alter pixels directly in this function.
      * @param picture
      */
     public static Picture pixelate(Picture picture)
@@ -558,7 +531,6 @@ public class ImageFilters
     }
 
     /**
-     * Save to a file. This has been implemented for you! Don't change it.
      * 
      * @param picture
      */
